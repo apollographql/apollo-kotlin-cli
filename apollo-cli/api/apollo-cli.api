@@ -1,4 +1,4 @@
-public final class com/apollographql/apollo3/cli/MainKt {
+public final class com/apollographql/cli/MainKt {
 	public static final fun main ([Ljava/lang/String;)V
 }
 
