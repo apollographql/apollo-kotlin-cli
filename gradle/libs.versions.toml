@@ -1,1 +1,4 @@
 [libraries]
+clikt = "com.github.ajalt.clikt:clikt:3.5.0"
+serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0"
+apollo-tooling = "com.apollographql.apollo3:apollo-tooling:4.0.0-beta.7"
