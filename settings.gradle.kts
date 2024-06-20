@@ -7,4 +7,4 @@ pluginManagement {
   }
 }
 
-include(":module")
+include(":apollo-cli")
