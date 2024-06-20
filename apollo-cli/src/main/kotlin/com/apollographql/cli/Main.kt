@@ -1,4 +1,4 @@
-package com.apollographql.apollo3.cli
+package com.apollographql.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.PrintCompletionMessage

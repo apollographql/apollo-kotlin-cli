@@ -1,4 +1,4 @@
-package com.apollographql.apollo3.cli
+package com.apollographql.cli
 
 import com.apollographql.apollo3.tooling.SchemaDownloader
 import com.github.ajalt.clikt.core.CliktCommand
