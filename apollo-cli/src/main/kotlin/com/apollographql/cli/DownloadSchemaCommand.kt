@@ -1,6 +1,6 @@
 package com.apollographql.cli
 
-import com.apollographql.apollo3.tooling.SchemaDownloader
+import com.apollographql.apollo.tooling.SchemaDownloader
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
