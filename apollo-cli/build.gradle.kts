@@ -1,4 +1,4 @@
-import com.gradleup.librarian.core.librarianModule
+import com.gradleup.librarian.gradle.librarianModule
 
 plugins {
   id("org.jetbrains.kotlin.jvm")
@@ -10,4 +10,4 @@ dependencies {
   implementation(libs.apollo.tooling)
 }
 
-librarianModule()  
+librarianModule(true)
