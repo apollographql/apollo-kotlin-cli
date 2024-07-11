@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":apollo-cli/main":[]}'
