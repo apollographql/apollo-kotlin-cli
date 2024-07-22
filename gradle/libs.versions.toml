@@ -1,4 +1,7 @@
+[versions]
+apollo = "4.0.0-rc.2"
+
 [libraries]
 clikt = "com.github.ajalt.clikt:clikt:3.5.0"
 serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0"
-apollo-tooling = "com.apollographql.apollo:apollo-tooling:4.0.0-rc.1"
+apollo-tooling = { module = "com.apollographql.apollo:apollo-tooling", version.ref = "apollo" }
