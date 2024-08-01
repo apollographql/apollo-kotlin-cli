@@ -1,8 +1,9 @@
 import com.gradleup.librarian.gradle.librarianRoot
 
 plugins {
-  id("org.jetbrains.kotlin.jvm").version("2.0.20-Beta1").apply(false)
-  id("com.gradleup.librarian").version("0.0.4").apply(false)
+  alias(libs.plugins.kotlin).apply(false)
+  alias(libs.plugins.librarian).apply(false)
+  alias(libs.plugins.serialization).apply(false)
 }
 
 

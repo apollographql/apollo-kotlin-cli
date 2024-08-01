@@ -2,3 +2,7 @@ public final class com/apollographql/cli/MainKt {
 	public static final fun main ([Ljava/lang/String;)V
 }
 
+public final class com/apollographql/cli/VersionKt {
+	public static final field VERSION Ljava/lang/String;
+}
+

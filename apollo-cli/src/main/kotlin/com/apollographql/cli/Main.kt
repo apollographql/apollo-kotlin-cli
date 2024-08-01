@@ -1,58 +1,57 @@
 package com.apollographql.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
-import com.github.ajalt.clikt.core.PrintCompletionMessage
 import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.options.required
-import java.lang.reflect.InvocationTargetException
+import com.github.ajalt.mordant.terminal.Terminal
 import kotlin.system.exitProcess
 
-private class MainCommand(name: String) : CliktCommand(name = name) {
-  init {
-    subcommands(DownloadSchemaCommand())
-    subcommands(PublishSchemaCommand())
-  }
-
-  override fun run() {
-    System.err.println("apollo-cli is experimental and might change in backward incompatible ways")
-  }
+/**
+ * A placeholder command to test that the auto-update runs in the background
+ */
+internal class NoOpCommand: CliktCommand(hidden = true) {
+  override fun run() {}
 }
 
-private class MyCompletionCommand : CliktCommand(name = "generate-completion") {
-  val shell by option().required()
-  val name by option().required()
+private class MainCommand(name: String) : CliktCommand(name = name, invokeWithoutSubcommand = true) {
+  val version by option().flag()
+
+  init {
+    subcommands(DownloadSchemaCommand(), PublishSchemaCommand(), InstallCommand(), NoOpCommand())
+  }
 
   override fun run() {
-    // See https://github.com/ajalt/clikt/issues/355
-    val command = MainCommand(name).subcommands(PlaceHolderCommand())
-    command.parse(arrayOf("placeholder"))
-    val clazz = Class.forName("com.github.ajalt.clikt.completion.CompletionGenerator")!!
-    val instanceField = clazz.declaredFields.single { it.name == "INSTANCE" }
-    val instance = instanceField.get(clazz)
-    val method = clazz.declaredMethods.single { it.name == "throwCompletionMessage" }
-    try {
-      method.invoke(instance, command, shell)
-    } catch (e: InvocationTargetException) {
-      val cause = e.cause
-      if (cause is PrintCompletionMessage) {
-        println(cause.message)
-        exitProcess(0)
+    if (version) {
+      println("apollo-kotlin-cli $VERSION")
+      exitProcess(0)
+    }
+
+    val subcommand = currentContext.invokedSubcommand
+    if (subcommand == null) {
+      println(getFormattedHelp())
+      exitProcess(1)
+    }
+
+    val newVersion = checkVersion()
+    if (subcommand !is InstallCommand && newVersion != null) {
+      val terminal = Terminal()
+      val update = terminal.prompt(
+        "A new version is available ($newVersion > $VERSION). Do you want to update",
+        default = "y",
+        choices = listOf("y", "n")
+      )
+      if (update == "y") {
+        overwrite(newVersion)
+      } else {
+        configSetMinimalVersion(newVersion)
       }
-      throw e
     }
   }
 }
 
-private class PlaceHolderCommand : CliktCommand(name = "placeholder") {
-  override fun run() {
-    println("This command is only present for technical reasons but doesn't do anything")
-  }
-}
-
 fun main(args: Array<String>) {
-  MainCommand("apollo-cli")
-      .subcommands(MyCompletionCommand())
-      .main(args)
+  MainCommand("apollo-kotlin-cli")
+    .main(args)
 }
 
