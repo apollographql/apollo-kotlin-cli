@@ -19,13 +19,21 @@ Command line tool for your GraphQL projects.
 
 ## Installation
 
+Install latest version:
+
 ```
-curl -L go.apollo.dev/apollo-kotlin-cli-install.sh | sh
+curl -sS https://raw.githubusercontent.com/apollographql/apollo-kotlin-cli/main/install.sh | sh
+```
+
+Install a specific version (in CI):
+
+```
+VERSION=0.0.4 curl -sS https://raw.githubusercontent.com/apollographql/apollo-kotlin-cli/main/install.sh | sh
 ```
 
 ## Usage
 
-Type `--help` for up to date usage
+Type `--help` for up-to-date usage
 
 ```
 apollo-kotlin-cli --help

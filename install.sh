@@ -7,6 +7,9 @@
 
 set -u
 
+REPOSITORY_OWNER=apollographql
+REPOSITORY_NAME=apollo-kotlin-cli
+
 download_binary_and_run_installer() {
     need_cmd curl
     need_cmd mktemp
@@ -16,17 +19,23 @@ download_binary_and_run_installer() {
     need_cmd rmdir
     need_cmd unzip
 
-    PACKAGE_VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/apollographql/apollo-kotlin-cli/releases/latest)
-    PACKAGE_VERSION=${PACKAGE_VERSION##*/v}
+    LATEST_VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$REPOSITORY_OWNER/$REPOSITORY_NAME/releases/latest)
+    LATEST_VERSION=${LATEST_VERSION##*/v}
 
-    DOWNLOAD_VERSION=$PACKAGE_VERSION
+    if [ -z ${VERSION:-} ]; then
+        # VERSION is either not set or empty
+        DOWNLOAD_VERSION=$LATEST_VERSION
+    else
+        # VERSION set and not empty
+        DOWNLOAD_VERSION=$VERSION
+    fi
 
-    local _tardir="apollo-kotlin-cli-$DOWNLOAD_VERSION"
-    local _url="https://github.com/apollographql/apollo-kotlin-cli/releases/download/v$DOWNLOAD_VERSION/${_tardir}.zip"
-    local _tmpdir="$(mktemp -d 2>/dev/null || ensure mktemp -d -t apollo-kotlin-cli)"
+    local _tardir="$REPOSITORY_NAME-$DOWNLOAD_VERSION"
+    local _url="https://github.com/$REPOSITORY_OWNER/$REPOSITORY_NAME/releases/download/v$DOWNLOAD_VERSION/${_tardir}.zip"
+    local _tmpdir="$(mktemp -d 2>/dev/null || ensure mktemp -d -t $REPOSITORY_NAME)"
     local _file="$_tmpdir/input.zip"
 
-    say "downloading apollo-kotlin-cli from $_url" 1>&2
+    say "downloading $REPOSITORY_NAME from $_url" 1>&2
 
     ensure mkdir -p "$_tmpdir"
     downloader "$_url" "$_file"
@@ -35,13 +44,13 @@ download_binary_and_run_installer() {
       say "this may be a standard network error, but it may also indicate"
       say "that the release process is not working. When in doubt"
       say "please feel free to open an issue!"
-      say "https://github.com/apollographql/apollo-kotlin-cli/issues/new/choose"
+      say "https://github.com/$REPOSITORY_OWNER/$REPOSITORY_NAME/issues/new/choose"
       exit 1
     fi
 
     ensure unzip -q "$_file" -d "$_tmpdir"
 
-    "$_tmpdir/apollo-kotlin-cli-$DOWNLOAD_VERSION/bin/apollo-kotlin-cli" "install"
+    "$_tmpdir/$REPOSITORY_NAME-$DOWNLOAD_VERSION/bin/$REPOSITORY_NAME" "install"
     local _retval=$?
 
     ignore rm -rf "$_tmpdir"
