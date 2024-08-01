@@ -12,9 +12,9 @@ import okhttp3.Request
 import java.util.zip.ZipInputStream
 import kotlin.time.Duration.Companion.days
 
-val logFile = installDir.resolve("logs")
+internal val logFile = installDir.resolve("logs")
 
-fun log(message: String) {
+internal fun log(message: String) {
   logFile.parentFile.mkdirs()
   if (logFile.exists() && logFile.length() > 10_000_000) {
     logFile.writeText("")
@@ -23,13 +23,13 @@ fun log(message: String) {
   logFile.appendText(message)
 }
 
-fun log(throwable: Throwable) {
+internal fun log(throwable: Throwable) {
   log("${Clock.System.now()}\n")
   log(throwable.stackTraceToString())
   log("\n")
 }
 
-fun checkVersion(): String? {
+internal fun checkVersion(): String? {
   val config: Config? = config()
 
   log("minimalVersion=${config?.minimalVersion} - latestVersion=${config?.latestVersion}\n")
@@ -100,7 +100,7 @@ private fun getLatestVersion() {
  * - does not touch .zshrc/.bashrc
  * - TODO: do we need to remove files before overwriting them?
  */
-fun overwrite(version: String) {
+internal fun overwrite(version: String) {
   val url = "https://github.com/apollographql/apollo-kotlin-cli/releases/download/v$version/apollo-kotlin-cli-$version.zip"
 
   val request = Request.Builder()

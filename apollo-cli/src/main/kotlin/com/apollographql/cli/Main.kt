@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 /**
  * A placeholder command to test that the auto-update runs in the background
  */
-class NoOpCommand: CliktCommand(hidden = true) {
+internal class NoOpCommand: CliktCommand(hidden = true) {
   override fun run() {}
 }
 

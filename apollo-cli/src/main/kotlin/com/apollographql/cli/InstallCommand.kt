@@ -5,8 +5,8 @@ import java.io.File
 import kotlin.system.exitProcess
 
 private val initFilename = "init.sh"
-val home = File(System.getProperty("user.home"))
-val installDir = home.resolve(".apollo-kotlin-cli")
+internal val home = File(System.getProperty("user.home"))
+internal val installDir = home.resolve(".apollo-kotlin-cli")
 
 /**
  * The install command is run from the install.sh script and finishes installation:

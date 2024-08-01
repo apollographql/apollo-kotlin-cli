@@ -6,7 +6,7 @@ import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.encodeToStream
 
 @Serializable
-class Config(
+internal class Config(
   val lastCheck: String,
   val latestVersion: String,
   val minimalVersion: String,
@@ -29,7 +29,7 @@ private fun configRead(): Config? {
 }
 
 @Synchronized
-fun config(): Config? {
+internal fun config(): Config? {
   if (!initialized) {
     initialized = true
     return configRead()
@@ -39,7 +39,7 @@ fun config(): Config? {
 }
 
 @Synchronized
-fun configSetLatestVersion(latestVersion: String, lastCheck: String) {
+internal fun configSetLatestVersion(latestVersion: String, lastCheck: String) {
   theConfig = Config(
     lastCheck = lastCheck,
     latestVersion = latestVersion,
@@ -49,7 +49,7 @@ fun configSetLatestVersion(latestVersion: String, lastCheck: String) {
 }
 
 @Synchronized
-fun configSetMinimalVersion(minimalVersion: String) {
+internal fun configSetMinimalVersion(minimalVersion: String) {
   if (theConfig != null) {
     theConfig = Config(
       lastCheck = theConfig!!.lastCheck,
