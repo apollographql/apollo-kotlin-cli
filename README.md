@@ -13,14 +13,17 @@
 
 </div>
 
-## 🚀 Apollo Cli
+# 🚀 Apollo Cli
 
 Command line tool for your GraphQL projects.
 
-## 📚 Documentation
+## Installation
 
-See the project website for documentation:<br/>
-[https://apollographql.github.io/apollo-kotlin-cli/](https://apollographql.github.io/apollo-kotlin-cli/)
+```
+curl -L go.apollo.dev/apollo-kotlin-cli-install.sh | sh
+```
+
+## 📚 API reference
 
 The Kdoc API reference can be found at:<br/>
 [https://apollographql.github.io/apollo-kotlin-cli/kdoc](https://apollographql.github.io/apollo-kotlin-cli/kdoc)
