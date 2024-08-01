@@ -23,7 +23,10 @@ Command line tool for your GraphQL projects.
 curl -L go.apollo.dev/apollo-kotlin-cli-install.sh | sh
 ```
 
-## 📚 API reference
+## Usage
 
-The Kdoc API reference can be found at:<br/>
-[https://apollographql.github.io/apollo-kotlin-cli/kdoc](https://apollographql.github.io/apollo-kotlin-cli/kdoc)
+Type `--help` for up to date usage
+
+```
+apollo-kotlin-cli --help
+```
