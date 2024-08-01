@@ -60,17 +60,27 @@ internal class InstallCommand : CliktCommand(
           found = true
           if (!readText().contains(source)) {
             appendText("\n")
+            println("Added init snippet to $absolutePath ✅")
             appendText(source)
           }
         }
       }
     }
 
+    println()
+    println("👋 Welcome to apollo-kotlin-cli!")
+    println()
+    println("- apollo-kotlin-cli helps you work with GraphQL and Kotlin.")
+    println("- Quickstart: apollo-kotlin-cli --help")
+    println("- Learn more at https://github.com/apollographql/apollo-kotlin-cli.")
+    println()
+
     if (!found) {
       println("Cannot detect your shell. Add the following to your init scripts:")
       println(source)
     } else {
-      println("Open a new terminal or run the command below to start using apollo-kotlin-cli")
+      println("Open a new terminal or run the command below to start using apollo-kotlin-cli:")
+      println()
       println(source)
     }
   }
