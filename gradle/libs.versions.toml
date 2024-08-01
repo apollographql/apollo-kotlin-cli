@@ -15,4 +15,4 @@ mordant = "com.github.ajalt.mordant:mordant:2.7.2"
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-librarian = { id = "com.gradleup.librarian", version = "0.0.4" }
+librarian = { id = "com.gradleup.librarian", version = "0.0.6" }
