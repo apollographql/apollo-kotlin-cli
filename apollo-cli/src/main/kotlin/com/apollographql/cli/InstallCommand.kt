@@ -50,6 +50,9 @@ internal class InstallCommand : CliktCommand(
   }
 
   override fun run() {
+    // Delete previous installation
+    installDir.deleteRecursively()
+
     copyFiles()
 
     val source = "source \"${installDir.resolve(initFilename)}\""
