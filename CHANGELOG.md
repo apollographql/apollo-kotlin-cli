@@ -1,5 +1,8 @@
 # Next version (unreleased)
 
+# Version 0.0.5
+_2024-08-02_
+
 * Workaround for download-schema never terminating (#21)
 
 # Version 0.0.4
