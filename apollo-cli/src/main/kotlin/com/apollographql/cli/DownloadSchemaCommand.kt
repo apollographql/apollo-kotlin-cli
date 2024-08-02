@@ -41,5 +41,8 @@ internal class DownloadSchemaCommand: CliktCommand() {
         headers = headersMap,
         insecure = insecure,
     )
+
+    // See https://github.com/apollographql/apollo-kotlin/pull/6091
+    System.exit(0)
   }
 }

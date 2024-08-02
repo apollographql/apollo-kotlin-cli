@@ -15,6 +15,7 @@ dependencies {
   implementation(libs.okhttp)
   implementation(libs.jsonpathkt)
   implementation(libs.mordant)
+  testImplementation(libs.kotlin.test)
 }
 
 librarianModule(true)

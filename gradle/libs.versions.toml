@@ -11,6 +11,7 @@ kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.0"
 okhttp = "com.squareup.okhttp3:okhttp:4.12.0"
 jsonpathkt = "com.eygraber:jsonpathkt-kotlinx:3.0.2"
 mordant = "com.github.ajalt.mordant:mordant:2.7.2"
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
